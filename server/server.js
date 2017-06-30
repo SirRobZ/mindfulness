@@ -16,7 +16,7 @@ const port = process.env.PORT;
 app.use(bodyParser.json());
 
 app.post('/reflections', authenticate, (req, res) => {
-  var reflection = new reflection({
+  var reflection = new Reflection({
     text: req.body.text,
     habits: req.body.habits,
     mindfulnessScore: req.body.mindfulnessScore,
