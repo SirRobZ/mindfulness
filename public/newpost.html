@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mindful</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <main>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Mindful</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="login-form navbar-form navbar-right">
+            <button type="submit" class="btn btn-success">Home</button>
+            <button type="submit" class="btn btn-success">Sign Out</button>
+          </form>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="quiz">
+      <div class="quiz-container hidden">
+        <p class='questionNumber'></p>
+        <p class='question'></p>
+        <ul></ul>
+        <button class="nextButton">Next</button>
+        <p class='score'></p>
+      </div>
+      <div class="start">
+        <p>Click below to begin the Five Factor Mindfulness Questionaire .</p>
+        <button>Start</button>
+      </div>
+      <div class="finish hidden">
+        <form>
+            <div>
+              <label for="user-text">Weekly Reflection</label>
+              <textarea cols="60" rows="20" id="user-text" name="user-text" placeholder="Take a moment to note how you felt this week and any actions you took to improve your mindfulness." required></textarea>
+            </div>
+            <div class="activities">
+              <input type="checkbox" id="sleep" name="activity" value="sleep"> Getting enough sleep<br>
+              <input type="checkbox" id="exercise" name="activity" value="exercise"> Exercising regularly<br>
+              <input type="checkbox" id="diet" name="activity" value="diet"> Eating a healthy diet<br>
+              <input type="checkbox" id="meditation" name="activity" value="meditation"> Practicing meditation<br>
+            </div>
+            <div>
+              <button type="submit">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2016 Company, Inc.</p>
+    </footer>
+
+    <!-- /container -->
+  </main>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="newpost.js"></script>
+</body>
+
+</html>

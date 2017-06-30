@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mindful</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <main>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Mindful</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="login-form navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="landing-page">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container banner">
+          <h1>Improve your Mindfulness</h1>
+          <p>Record reflections and track behavior to gain a greater awareness of your thought processes. </p>
+          <p><a class="login-button btn btn-primary btn-lg" href="#" role="button">Sign Up &raquo;</a></p>
+        </div>
+      </div>
+
+      <div class="container icons">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <h2>Reflect</h2>
+            <p><img src="/images/noun_646675_cc.png" alt="Journal"></p>
+            <p>Record a reflection of your day and note any positive behaviors.</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h2>Track</h2>
+            <p><img src="/images/noun_739950_cc.png" alt=" Chart"></p>
+            <p>Each reflection impacts your mindfulness score, which will be tracked over time. </p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h2>Improve</h2>
+            <p><img src="/images/noun_712152_cc.png" alt="Journal"></p>
+            <p>As you engage in more mindful behaviors the improvments will show in your reflections</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h2>Thrive</h2>
+            <p><img src="/images/noun_539398_cc.png" alt="Journal"></p>
+            <p>Gain focus, improve memory, reduce stress! </p>
+          </div>
+        </div>
+        <hr>
+    </div>
+  </div>
+  <div class="signup-page hidden" >
+    <form class="form-signin" id="signup-form">
+      <h2 class="form-signin-heading text-center" >Sign up to begin!</h2>
+      <div class="form-group">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <label for="passwordConfirm" class="sr-only">Password</label>
+        <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" placeholder="Confirm Password" required>
+      </div>
+      <div class="form-group signup-messages">
+        <div class="alert alert-success hidden"></div>
+        <div class="alert alert-danger hidden"></div>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+    </form>
+  </div>
+  <footer>
+    <p>&copy; 2016 Company, Inc.</p>
+  </footer>
+
+    <!-- /container -->
+  </main>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>

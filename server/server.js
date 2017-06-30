@@ -142,6 +142,9 @@ app.delete('/users/me/token', authenticate, (req, res) => {
 
 app.listen(port, () => {
   console.log(`Started up at port ${port}`);
+  app.use(express.static('public'));
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
 });
 
 module.exports = {app};

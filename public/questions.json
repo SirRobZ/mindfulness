@@ -1,0 +1,34 @@
+{
+	"answers": ["Never of very rarely true", "Rarely true", "Sometimes true", "Often true", "Very often or always true"],
+	"questions": [{
+		"question": "When I take a shower or a bath, I stay alert to the sensations of water on my body."
+	}, {
+		"question": "I’m good at finding words to describe my feelings."
+	}, {
+		"question": "I don’t pay attention to what I’m doing because I’m daydreaming, worrying, or otherwise distracted."
+	}, {
+		"question": "I believe some of my thoughts are abnormal or bad and I shouldn’t think that way."
+	}, {
+		"question": "When I have distressing thoughts or images, I “step back” and am aware of the thought or image without getting taken over by it."
+	}, {
+		"question": "I notice how foods and drinks affect my thoughts, bodily sensations, and emotions."
+	}, {
+		"question": "I have trouble thinking of the right words to express how I feel about things. "
+	}, {
+		"question": "I do jobs or tasks automatically without being aware of what I’m doing."
+	}, {
+		"question": "I think some of my emotions are bad or inappropriate and I shouldn’t feel them."
+	}, {
+		"question": "When I have distressing thoughts or images I am able just to notice them without reacting."
+	}, {
+		"question": "I pay attention to sensations, such as the wind in my hair or sun on my face."
+	}, {
+		"question": "Even when I’m feeling terribly upset I can find a way to put it into words."
+	}, {
+		"question": "I find myself doing things without paying attention."
+	}, {
+		"question": "I tell myself I shouldn’t be feeling the way I’m feeling."
+	}, {
+		"question": "When I have distressing thoughts or images I just notice them and let them go."
+	}]
+}
