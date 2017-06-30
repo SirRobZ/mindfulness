@@ -51,11 +51,11 @@ function sendSignupDataToAPI(form) {
   }, {});
   if (data.password === data.passwordConfirm) {
     delete data.passwordConfirm;
-    $.post('/api/users', data)
+    $.post('/users', data)
       .then(handleSuccess)
       .catch(handleError);
   } else {
-    $('#signup-form .signup-messages .alert-success').text('Passwords must be identical')
+    $('#signup-form .signup-messages .alert-danger').removeClass('hidden').text('Passwords must be identical')
   }
 }
 
