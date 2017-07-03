@@ -13,7 +13,9 @@ var {authenticate} = require('./middleware/authenticate');
 var app = express();
 const port = process.env.PORT;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.post('/reflections', authenticate, (req, res) => {
   var reflection = new Reflection({
@@ -104,14 +106,20 @@ app.patch('/reflections/:id', authenticate, (req, res) => {
 
 // POST /users
 app.post('/users', (req, res) => {
-  var body = _.pick(req.body, ['email', 'password']);
+  var body = _.pick(req.body, ['fullName', 'email', 'password']);
+  console.log('>> 1 body: ', body);
   var user = new User(body);
 
-  user.save().then(() => {
+  console.log('>> 2 user : ', user);
+
+  user.save().then((savedUser) => {
+    console.log('>> 3 savedUser: ', savedUser);
     return user.generateAuthToken();
   }).then((token) => {
+    console.log('>> 4 token : ', token);
     res.header('x-auth', token).send(user);
   }).catch((e) => {
+    console.log('>> ERROR: ', e);
     res.status(400).send(e);
   })
 });
