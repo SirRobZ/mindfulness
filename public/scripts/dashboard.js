@@ -2,6 +2,8 @@ $(function() {
 
   initiate();
 
+  // var utils = window.utils;
+
   var currentUser = null;
 
   function loadAuthenticatedUser() {
@@ -25,10 +27,11 @@ $(function() {
   }
 
   function displayUserInfo(){
-    $('.score-tracker h2').html(currentUser.email);
+    $('.score-tracker h2').html(currentUser.fullName);
   }
 
   function initiate() {
+    bindEvents();
     loadAuthenticatedUser().then(function(userObject) {
       currentUser = userObject;
 
@@ -38,5 +41,21 @@ $(function() {
       location.assign('/');
     });
   }
+
+  function bindEvents() {
+    var form = $('.logout-form');
+    form.on('submit', function(event) {
+      event.preventDefault();
+      utils.auth.logout()
+      .then(function(){
+        console.log('Successful logout');
+      })
+      .catch(function(e){
+        console.log('Error when logging out');
+        console.log(e);
+      });
+    });
+  }
+
 
 });

@@ -107,19 +107,12 @@ app.patch('/reflections/:id', authenticate, (req, res) => {
 // POST /users
 app.post('/users', (req, res) => {
   var body = _.pick(req.body, ['fullName', 'email', 'password']);
-  console.log('>> 1 body: ', body);
   var user = new User(body);
-
-  console.log('>> 2 user : ', user);
-
   user.save().then((savedUser) => {
-    console.log('>> 3 savedUser: ', savedUser);
     return user.generateAuthToken();
   }).then((token) => {
-    console.log('>> 4 token : ', token);
     res.header('x-auth', token).send(user);
   }).catch((e) => {
-    console.log('>> ERROR: ', e);
     res.status(400).send(e);
   })
 });
@@ -130,13 +123,13 @@ app.get('/users/me', authenticate, (req, res) => {
 
 app.post('/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
-
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
       res.header('x-auth', token).send(user);
     });
   }).catch((e) => {
     res.status(400).send();
+    console.log(e);
   });
 });
 
