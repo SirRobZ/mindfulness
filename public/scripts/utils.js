@@ -1,4 +1,4 @@
-// +function(global){
++function(mf){
 
   var utils = {
     getFormData: getFormData,
@@ -13,7 +13,7 @@
   };
 
   // expose to global scope
-  // global.utils = utils;
+  mf.utils = utils;
 
   function logout() {
     var token = localStorage.getItem('x-auth');
@@ -76,4 +76,5 @@
     });
   }
 
-// }(this);
+
+}(window.mf);

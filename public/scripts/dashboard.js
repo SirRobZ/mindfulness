@@ -1,8 +1,8 @@
++function(mf){
+
 $(function() {
 
   initiate();
-
-  // var utils = window.utils;
 
   var currentUser = null;
 
@@ -30,6 +30,27 @@ $(function() {
     $('.score-tracker h2').html(currentUser.fullName);
   }
 
+  function bindEvents() {
+    var form = $('.logout-form');
+    form.on('submit', function(event) {
+      event.preventDefault();
+      mf.utils.auth.logout()
+      .then(function(){
+        console.log('Successful logout');
+      })
+      .catch(function(e){
+        console.log('Error when logging out');
+        console.log(e);
+      });
+    });
+
+    var newReflection = $('.new-reflection');
+      newReflection.on('submit', function(event) {
+        event.preventDefault();
+        location.assign('/newpost.html');
+      })
+  }
+
   function initiate() {
     bindEvents();
     loadAuthenticatedUser().then(function(userObject) {
@@ -42,20 +63,5 @@ $(function() {
     });
   }
 
-  function bindEvents() {
-    var form = $('.logout-form');
-    form.on('submit', function(event) {
-      event.preventDefault();
-      utils.auth.logout()
-      .then(function(){
-        console.log('Successful logout');
-      })
-      .catch(function(e){
-        console.log('Error when logging out');
-        console.log(e);
-      });
-    });
-  }
-
-
 });
+}(window.mf);

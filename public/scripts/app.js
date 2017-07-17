@@ -1,8 +1,9 @@
++function(mf){
+
+
 $(function() {
 
   initiate();
-
-  // var utils = window.utils;
 
   var state = {
     isLandingPage: true
@@ -40,9 +41,9 @@ $(function() {
     var loginForm = $('#login-form');
     loginForm.on('submit', function(event) {
       event.preventDefault();
-      var data = utils.getFormData(loginForm);
+      var data = mf.utils.getFormData(loginForm);
       console.log(data);
-      utils.api.postLoginData(data)
+      mf.utils.api.postLoginData(data)
         .then(handleLoginSuccess)
         .catch(handleLoginError);
     })
@@ -51,9 +52,9 @@ $(function() {
     var signupForm = $('#signup-form');
     signupForm.on('submit', function(event) {
       event.preventDefault();
-      var data = utils.getFormData(signupForm);
+      var data = mf.utils.getFormData(signupForm);
       if (data.password === data.passwordConfirm) {
-        utils.api.postSignUpData(data)
+        mf.utils.api.postSignUpData(data)
           .then(handleSuccess)
           .catch(handleError);
       } else {
@@ -138,3 +139,4 @@ $(function() {
   }
 
 });
+}(window.mf);
