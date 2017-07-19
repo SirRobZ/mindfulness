@@ -28,23 +28,13 @@ const reflections = [{
   _id: new ObjectID(),
   mindfulnessScore: 20,
   text: 'First test reflection',
-  habits: {
-    sleep: true,
-    exercise: false,
-    diet: true,
-    meditation: false
-  },
+  habits: ['sleep', 'diet'],
   _creator: userOneId
 }, {
   _id: new ObjectID(),
   mindfulnessScore: 15,
   text: 'Second test reflection',
-  habits: {
-    sleep: false,
-    exercise: true,
-    diet: false,
-    meditation: true
-  },
+  habits: ['exercise', 'meditation'],
   _creator: userTwoId
 }];
 
