@@ -26,9 +26,35 @@ $(function() {
     });
   }
 
+  var reflections = null;
+
+  function loadUserReflections() {
+    return new Promise(function(resolve, reject) {
+      var token = localStorage.getItem('x-auth');
+      $.ajax({
+        url: '/reflections',
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+          'x-auth': token
+        },
+        success: function(reflectionObject) {
+          resolve(reflectionObject);
+        },
+        error: function(request, status, error) {
+          reject(error);
+        }
+      });
+    });
+  }
+
   function displayUserInfo(){
     $('.score-tracker h2').html(currentUser.fullName);
   }
+
+function displayReflections(){
+  $('.reflections').html(reflections[0].text);
+}
 
   function bindEvents() {
     var form = $('.logout-form');
@@ -61,6 +87,10 @@ $(function() {
       localStorage.removeItem('x-auth');
       location.assign('/');
     });
+    loadUserReflections().then(function(reflectionObject) {
+      reflections = reflectionObject;
+      displayReflections();
+    })
   }
 
 });

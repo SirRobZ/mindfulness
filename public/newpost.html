@@ -46,16 +46,16 @@
           <button>Start</button>
         </div>
         <div class="finish hidden">
-          <form>
+          <form id="reflectionForm">
               <div>
                 <label for="user-text">Weekly Reflection</label>
-                <textarea cols="60" rows="20" id="user-text" name="user-text" placeholder="Take a moment to note how you felt this week and any actions you took to improve your mindfulness." required></textarea>
+                <textarea cols="60" rows="20" id="user-text" name="text" placeholder="Take a moment to note how you felt this week and any actions you took to improve your mindfulness." required></textarea>
               </div>
-              <div class="activities">
-                <input type="checkbox" id="sleep" name="activity" value="sleep"> Getting enough sleep<br>
-                <input type="checkbox" id="exercise" name="activity" value="exercise"> Exercising regularly<br>
-                <input type="checkbox" id="diet" name="activity" value="diet"> Eating a healthy diet<br>
-                <input type="checkbox" id="meditation" name="activity" value="meditation"> Practicing meditation<br>
+              <div class="habits">
+                <input type="checkbox" id="sleep" name="sleep" value="sleep"> Getting enough sleep<br>
+                <input type="checkbox" id="exercise" name="exercise" value="exercise"> Exercising regularly<br>
+                <input type="checkbox" id="diet" name="diet" value="diet"> Eating a healthy diet<br>
+                <input type="checkbox" id="meditation" name="meditation" value="meditation"> Practicing meditation<br>
               </div>
               <div>
                 <button type="submit">Submit</button>
@@ -75,6 +75,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
   <script type="text/javascript" src="./scripts/mf.js"></script>
   <script type="text/javascript" src="./scripts/utils.js"></script>
   <script type="text/javascript" src="./scripts/post-handlers.js"></script>

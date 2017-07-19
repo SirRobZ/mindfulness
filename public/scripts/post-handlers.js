@@ -1,4 +1,6 @@
 (function($, mf) {
+  var utils = mf.utils;
+  var reflections = mf.utils.api.reflections;
 
   var answers;
   var state = {
@@ -79,10 +81,37 @@
 
   function submitButtonHandler(event) {
     event.preventDefault();
+    var form = $(this);
     sendReflectionDataToAPI(form);
   }
 
-  function sendReflectionDataToAPI(form) {}
+  function sendReflectionDataToAPI(form) {
+    debugger;
+    var text = form.find('*[name=text]').val();
+    console.log('Text: ', text);
+
+
+    var habits = _.map(form.find('.habits input[type=checkbox]:checked'), function(habitInput){
+      return habitInput.name;
+    });
+
+    var newReflection = {
+      mindfulnessScore: state.currentScore,
+      text: text,
+      habits: habits
+    };
+
+    reflections.create(newReflection)
+    .then(function(){
+      // show a message to say it has been successfull
+      location.assign('/dashboard.html');
+    })
+    .catch(function(info){
+      // show a message to say it has not been successfull
+      console.error(info);
+
+    });
+  }
 
   var postHandlers = {
     startButtonHandler: startButtonHandler,

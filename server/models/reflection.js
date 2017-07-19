@@ -8,12 +8,16 @@ var Reflection = mongoose.model('Reflection', {
     minlength: 1,
     trim: true
   },
-  habits: {
-    sleep: Boolean,
-    exercise: Boolean,
-    diet: Boolean,
-    meditation: Boolean
-  },
+  // habits: {
+  //   sleep: Boolean,
+  //   exercise: Boolean,
+  //   diet: Boolean,
+  //   meditation: Boolean
+  // },
+  habits: [{
+    type: String,
+    enum: ['sleep', 'exercise', 'diet', 'meditation']
+  }],
   completedAt: {
     type: Number,
     default: null

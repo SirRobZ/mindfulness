@@ -17,12 +17,7 @@ describe('POST /reflections', () => {
     var testReflection = {
       mindfulnessScore: 25,
       text: 'Another reflection',
-      habits: {
-        sleep: true,
-        exercise: true,
-        diet: true,
-        meditation: false
-      }
+      habits: ['sleep', 'exercise', 'diet']
     };
 
     request(app)
