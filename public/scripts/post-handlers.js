@@ -86,7 +86,6 @@
   }
 
   function sendReflectionDataToAPI(form) {
-    debugger;
     var text = form.find('*[name=text]').val();
     console.log('Text: ', text);
 
@@ -103,11 +102,9 @@
 
     reflections.create(newReflection)
     .then(function(){
-      // show a message to say it has been successfull
       location.assign('/dashboard.html');
     })
     .catch(function(info){
-      // show a message to say it has not been successfull
       console.error(info);
 
     });

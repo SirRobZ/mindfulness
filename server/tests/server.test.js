@@ -12,7 +12,7 @@ beforeEach(populateReflections);
 
 
 
-describe('POST /reflections', () => {
+describe('POST /api/reflections', () => {
   it('should create a new reflection', (done) => {
     var testReflection = {
       mindfulnessScore: 25,
@@ -21,7 +21,7 @@ describe('POST /reflections', () => {
     };
 
     request(app)
-      .post('/reflections')
+      .post('/api/reflections')
       .set('x-auth', users[0].tokens[0].token)
       .send(testReflection)
       .expect(200)
@@ -43,7 +43,7 @@ describe('POST /reflections', () => {
 
   it('should not create reflection with invalid body data', (done) => {
     request(app)
-      .post('/reflections')
+      .post('/api/reflections')
       .set('x-auth', users[0].tokens[0].token)
       .send({})
       .expect(400)
@@ -60,10 +60,10 @@ describe('POST /reflections', () => {
   });
 });
 
-describe('Get /reflections', () => {
+describe('Get /api/reflections', () => {
   it('should get all reflections', (done) => {
     request(app)
-      .get('/reflections')
+      .get('/api/reflections')
       .set('x-auth', users[0].tokens[0].token)
       .expect(200)
       .expect((res) => {
@@ -73,10 +73,10 @@ describe('Get /reflections', () => {
   });
 });
 
-describe('Get /reflections/:id', () => {
+describe('Get /api/reflections/:id', () => {
   it('should return reflection doc', (done) => {
     request(app)
-      .get(`/reflections/${reflections[0]._id.toHexString()}`)
+      .get(`/api/reflections/${reflections[0]._id.toHexString()}`)
       .set('x-auth', users[0].tokens[0].token)
       .expect(200)
       .expect((res) => {
@@ -87,7 +87,7 @@ describe('Get /reflections/:id', () => {
 
   it('should not return reflection doc created by other user', (done) => {
     request(app)
-      .get(`/reflections/${reflections[1]._id.toHexString()}`)
+      .get(`/api/reflections/${reflections[1]._id.toHexString()}`)
       .set('x-auth', users[0].tokens[0].token)
       .expect(404)
       .end(done);
@@ -96,7 +96,7 @@ describe('Get /reflections/:id', () => {
   it('should return 404 if reflection not found', (done) => {
     var id = new ObjectID();
     request(app)
-      .get(`/reflections/${id.toHexString()}`)
+      .get(`/api/reflections/${id.toHexString()}`)
       .set('x-auth', users[0].tokens[0].token)
       .expect(404)
       .end(done);
@@ -104,19 +104,19 @@ describe('Get /reflections/:id', () => {
 
   it('should return 404 for non-object ids', (done) => {
     request(app)
-      .get('/reflections/123abc')
+      .get('/api/reflections/123abc')
       .set('x-auth', users[0].tokens[0].token)
       .expect(404)
       .end(done);
   });
 });
 
-describe('DELETE /reflections/:id', () => {
+describe('DELETE /api/reflections/:id', () => {
   it('should remove a reflection', (done) => {
     var hexId = reflections[1]._id.toHexString()
 
     request(app)
-      .delete(`/reflections/${hexId}`)
+      .delete(`/api/reflections/${hexId}`)
       .set('x-auth', users[1].tokens[0].token)
       .expect(200)
       .expect((res) => {
@@ -138,7 +138,7 @@ describe('DELETE /reflections/:id', () => {
     var hexId = reflections[0]._id.toHexString()
 
     request(app)
-      .delete(`/reflections/${hexId}`)
+      .delete(`/api/reflections/${hexId}`)
       .set('x-auth', users[1].tokens[0].token)
       .expect(404)
       .end((err, res) => {
@@ -156,7 +156,7 @@ describe('DELETE /reflections/:id', () => {
   it('should return 404 if reflection not found', (done) => {
     var id = new ObjectID();
     request(app)
-      .delete(`/reflections/${id.toHexString()}`)
+      .delete(`/api/reflections/${id.toHexString()}`)
       .set('x-auth', users[1].tokens[0].token)
       .expect(404)
       .end(done);
@@ -164,14 +164,14 @@ describe('DELETE /reflections/:id', () => {
 
   it('should return 404 if ObjectID is invalid', (done) => {
     request(app)
-      .delete('/reflections/123abc')
+      .delete('/api/reflections/123abc')
       .set('x-auth', users[1].tokens[0].token)
       .expect(404)
       .end(done);
   });
 });
 
-describe('PATCH /reflections/:id', () => {
+describe('PATCH /api/reflections/:id', () => {
   it('should update reflection', (done) => {
     var hexId = reflections[0]._id.toHexString()
     var body = {
@@ -179,7 +179,7 @@ describe('PATCH /reflections/:id', () => {
       mindfulnessScore: 30
     }
     request(app)
-      .patch(`/reflections/${hexId}`)
+      .patch(`/api/reflections/${hexId}`)
       .set('x-auth', users[0].tokens[0].token)
       .send(body)
       .expect(200)
@@ -196,7 +196,7 @@ describe('PATCH /reflections/:id', () => {
       text: 'updated text',
     }
     request(app)
-      .patch(`/reflections/${hexId}`)
+      .patch(`/api/reflections/${hexId}`)
       .set('x-auth', users[1].tokens[0].token)
       .send(body)
       .expect(404)
@@ -204,10 +204,10 @@ describe('PATCH /reflections/:id', () => {
   });
 });
 
-describe('GET /users/me', () => {
+describe('GET /api/users/me', () => {
   it('should return user if authenticated', (done) => {
     request(app)
-      .get('/users/me')
+      .get('/api/users/me')
       .set('x-auth', users[0].tokens[0].token)
       .expect(200)
       .expect((res) => {
@@ -219,7 +219,7 @@ describe('GET /users/me', () => {
 
   it('should return a 401 if not authenticated', (done) => {
     request(app)
-      .get('/users/me')
+      .get('/api/users/me')
       .expect(401)
       .expect((res) => {
         expect(res.body).toEqual({});
@@ -228,13 +228,13 @@ describe('GET /users/me', () => {
   });
 })
 
-describe('POST /users', () => {
+describe('POST /api/users', () => {
   it('should create a user', (done) => {
     var email = 'example@example.com';
     var password = '123mnb!';
 
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({email, password})
       .expect(200)
       .expect((res) => {
@@ -260,7 +260,7 @@ describe('POST /users', () => {
     var password = '123';
 
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({email, password})
       .expect(400)
       .end(done);
@@ -271,17 +271,17 @@ describe('POST /users', () => {
     var password = '123qwe1';
 
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({email, password})
       .expect(400)
       .end(done);
   });
 });
 
-describe('POST /users/login', () => {
+describe('POST /api/users/login', () => {
   it('should login user and return auth token', (done) => {
     request(app)
-      .post('/users/login')
+      .post('/api/users/login')
       .send({
         email: users[1].email,
         password: users[1].password
@@ -307,7 +307,7 @@ describe('POST /users/login', () => {
 
   it('should reject invalid login', (done) => {
     request(app)
-      .post('/users/login')
+      .post('/api/users/login')
       .send({
         email: users[1].email,
         password: users[1].password + '1'
@@ -329,10 +329,10 @@ describe('POST /users/login', () => {
   });
 });
 
-describe('DELETE /users/me/token', () => {
+describe('DELETE /api/users/me/token', () => {
   it('should remove auth token on logout', (done) => {
     request(app)
-      .delete('/users/me/token')
+      .delete('/api/users/me/token')
       .set('x-auth', users[0].tokens[0].token)
       .expect(200)
       .end((err, res) => {

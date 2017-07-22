@@ -8,7 +8,7 @@
     var token = localStorage.getItem('x-auth');
     return new Promise(function(resolve, reject){
       $.ajax({
-        url: '/users/me/token',
+        url: '/api/users/me/token',
         method: 'DELETE',
         headers: {
           'x-auth': token
@@ -25,6 +25,11 @@
     });
   }
 
+  function formatDate(timestamp){
+    var date = new Date(timestamp);
+    return date.toString();
+  }
+
   function getFormData(form){
     return form.serializeArray().reduce((obj, item) => {
       obj[item.name] = item.value;
@@ -33,19 +38,19 @@
   }
 
   function postSignUpData(data) {
-    return postData('/users', data);
+    return serveData('/api/users', 'POST', data);
   }
 
   function postLoginData(data) {
-    return postData('/users/login', data);
+    return serveData('/api/users/login', 'POST', data);
   }
 
-  function postData(url, data) {
+  function serveData(url, method, data) {
     var token = getToken();
     return new Promise(function(resolve, reject){
       var ajaxOptions = {
         url: url,
-        method: 'POST',
+        method: method,
         dataType: 'json',
         data: data,
         success: function(response, status, request){
@@ -83,15 +88,20 @@
         console.log('to create a reflection we need a text and a score');
         return Promise.reject(Error('missing attribute'));
       }
-      return postData('/reflections', newReflection)
+      return serveData('/api/reflections', 'POST', newReflection)
         .then(function(result){
-          debugger;
-          console.log('>>> response: ', result.response);
           return result.response;
         });
     },
     readAll: function(){
-
+      return serveData('/api/reflections', 'GET')
+        .then(function(result){
+          var list = _.get(result, 'response.reflections');
+          if(_.isArray(list)){
+            return list;
+          }
+          throw Error('Invalid Data');
+        });
     },
     readOne: function(){
 
@@ -105,10 +115,11 @@
   };
 
   var utils = {
+    formatDate: formatDate,
     getToken: getToken,
     getFormData: getFormData,
     api: {
-      postData: postData,
+      serveData: serveData,
       postSignUpData: postSignUpData,
       postLoginData: postLoginData,
       reflections: reflections

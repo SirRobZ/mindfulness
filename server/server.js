@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.post('/reflections', authenticate, (req, res) => {
+app.post('/api/reflections', authenticate, (req, res) => {
   var reflection = new Reflection({
     text: req.body.text,
     habits: req.body.habits,
@@ -33,7 +33,7 @@ app.post('/reflections', authenticate, (req, res) => {
   });
 });
 
-app.get('/reflections', authenticate, (req, res) => {
+app.get('/api/reflections', authenticate, (req, res) => {
   Reflection.find({
     _creator: req.user._id
   }).then((reflections) => {
@@ -43,7 +43,7 @@ app.get('/reflections', authenticate, (req, res) => {
   });
 });
 
-app.get('/reflections/:id', authenticate, (req, res) => {
+app.get('/api/reflections/:id', authenticate, (req, res) => {
   var id = req.params.id;
 
   if (!ObjectID.isValid(id)) {
@@ -64,7 +64,7 @@ app.get('/reflections/:id', authenticate, (req, res) => {
   });
 });
 
-app.delete('/reflections/:id', authenticate, (req, res) => {
+app.delete('/api/reflections/:id', authenticate, (req, res) => {
   var id = req.params.id;
 
   if (!ObjectID.isValid(id)) {
@@ -85,7 +85,7 @@ app.delete('/reflections/:id', authenticate, (req, res) => {
   });
 });
 
-app.patch('/reflections/:id', authenticate, (req, res) => {
+app.patch('/api/reflections/:id', authenticate, (req, res) => {
   var id = req.params.id;
   var body = _.pick(req.body, ['text', 'habits', 'mindfulnessScore']);
 
@@ -105,7 +105,7 @@ app.patch('/reflections/:id', authenticate, (req, res) => {
 });
 
 // POST /users
-app.post('/users', (req, res) => {
+app.post('/api/users', (req, res) => {
   var body = _.pick(req.body, ['fullName', 'email', 'password']);
   var user = new User(body);
   user.save().then((savedUser) => {
@@ -117,11 +117,11 @@ app.post('/users', (req, res) => {
   })
 });
 
-app.get('/users/me', authenticate, (req, res) => {
+app.get('/api/users/me', authenticate, (req, res) => {
   res.send(req.user);
 });
 
-app.post('/users/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
@@ -133,7 +133,7 @@ app.post('/users/login', (req, res) => {
   });
 });
 
-app.delete('/users/me/token', authenticate, (req, res) => {
+app.delete('/api/users/me/token', authenticate, (req, res) => {
   req.user.removeToken(req.token).then (() => {
     res.status(200).send();
   }, () => {

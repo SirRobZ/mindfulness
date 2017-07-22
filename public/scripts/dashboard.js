@@ -1,5 +1,6 @@
 +function(mf){
-
+  var utils = mf.utils;
+  var reflections = mf.utils.api.reflections;
 $(function() {
 
   initiate();
@@ -10,7 +11,7 @@ $(function() {
     return new Promise(function(resolve, reject) {
       var token = localStorage.getItem('x-auth');
       $.ajax({
-        url: '/users/me',
+        url: '/api/users/me',
         method: 'GET',
         dataType: 'json',
         headers: {
@@ -26,35 +27,12 @@ $(function() {
     });
   }
 
-  var reflections = null;
 
-  function loadUserReflections() {
-    return new Promise(function(resolve, reject) {
-      var token = localStorage.getItem('x-auth');
-      $.ajax({
-        url: '/reflections',
-        method: 'GET',
-        dataType: 'json',
-        headers: {
-          'x-auth': token
-        },
-        success: function(reflectionObject) {
-          resolve(reflectionObject);
-        },
-        error: function(request, status, error) {
-          reject(error);
-        }
-      });
-    });
-  }
 
   function displayUserInfo(){
     $('.score-tracker h2').html(currentUser.fullName);
   }
 
-function displayReflections(){
-  $('.reflections').html(reflections[0].text);
-}
 
   function bindEvents() {
     var form = $('.logout-form');
@@ -77,6 +55,26 @@ function displayReflections(){
       })
   }
 
+  function loadUserReflections(){
+    reflections.readAll()
+    .then(function(list){
+      var reflectionsHtml = _.map(list, renderReflection).join('');
+      $('.reflections-list')
+        .html(reflectionsHtml)
+        .accordion();
+    })
+    .catch(function(){
+
+    });
+  }
+
+  function renderReflection(reflection){
+    return `<h3>${utils.formatDate(reflection.completedAt)}</h3>
+    <div>
+      <p>${reflection.text}</p>
+    </div>`;
+  }
+
   function initiate() {
     bindEvents();
     loadAuthenticatedUser().then(function(userObject) {
@@ -87,10 +85,7 @@ function displayReflections(){
       localStorage.removeItem('x-auth');
       location.assign('/');
     });
-    loadUserReflections().then(function(reflectionObject) {
-      reflections = reflectionObject;
-      displayReflections();
-    })
+    loadUserReflections();
   }
 
 });
