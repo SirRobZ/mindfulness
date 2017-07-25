@@ -5,7 +5,7 @@
   };
 
   function module(name, object){
-    mf[key] = object;
+    mf[name] = object;
   }
 
   global.mf = mf;

@@ -1,6 +1,7 @@
 +function(mf){
   var utils = mf.utils;
   var reflections = mf.utils.api.reflections;
+  var MFChart = mf.MFChart;
 $(function() {
 
   initiate();
@@ -58,20 +59,33 @@ $(function() {
   function loadUserReflections(){
     reflections.readAll()
     .then(function(list){
-      var reflectionsHtml = _.map(list, renderReflection).join('');
+      var reflectionsHtml = _.map(list.reverse(), renderReflection).join('');
       $('.reflections-list')
         .html(reflectionsHtml)
         .accordion();
     })
     .catch(function(){
+    });
+  }
 
+  function getMindfulnessScore(){
+    reflections.readAll()
+    .then(function(list){
+      var sum = 0;
+      for (i =0; i<list.length; i++) {
+        sum = sum + list[i].mindfulnessScore;
+      }
+      score = Math.round(sum/list.length);
+      $('.score').html(score);
+    })
+    .catch(function(){
     });
   }
 
   function renderReflection(reflection){
     return `<h3>${utils.formatDate(reflection.completedAt)}</h3>
     <div>
-      <p>${reflection.text}</p>
+      <p>${reflection.text}    mindfulnessScore: ${reflection.mindfulnessScore}</p>
     </div>`;
   }
 
@@ -86,6 +100,9 @@ $(function() {
       location.assign('/');
     });
     loadUserReflections();
+    getMindfulnessScore();
+
+    new MFChart('score');
   }
 
 });

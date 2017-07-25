@@ -38,33 +38,32 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-md-3 box-container">
-              <div class="box-inner-container">
-
+              <div class="box-inner-container score-box">
+                <p>Mindfulness Score</p>
+                <div class="score-container">
+                  <div class="score"></div>
+                </div>
               </div>
             </div>
             <div class="col-xs-12 col-md-9 box-container">
               <div class="box-inner-container">
-
+                <canvas id="score-chart-canvas"></canvas>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12 box-container">
               <div class="box-inner-container">
+                <div class="new-reflection">
+                  <form class="new-reflection">
+                    <button type="submit" class="btn btn-success new-reflection-button">Create New Reflection</button>
+                  </form>
+                </div>
                 <div class="reflections-list"></div>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-
-      <div class="new-reflection">
-        <form class="new-reflection">
-          <button type="submit" class="btn btn-success new-reflection-button">Create New Reflection</button>
-        </form>
-      </div>
-      <div class="reflections">
       </div>
     </div>
 
@@ -80,8 +79,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
   <script type="text/javascript" src="./scripts/mf.js"></script>
   <script type="text/javascript" src="./scripts/utils.js"></script>
+  <script type="text/javascript" src="./scripts/mfchart.js"></script>
   <script type="text/javascript" src="./scripts/dashboard.js"></script>
 </body>
 

@@ -93,7 +93,34 @@
   min-height: 300px;
   border: solid #CCC 1px;
 }
+.score-box p {
+  font-size: 150%;
+}
 
+.dashboard .score-container {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  border: 5px solid lightgrey;
+  background-color: #007fff;
+  margin-top 20px;
+  margin-bottom: 20px;
+}
+
+.dashboard .score {
+  margin: auto;
+  font-size: 450%;
+  color: white;
+
+
+}
+
+.dashboard .new-reflection {
+  margin-bottom: 20px;
+}
 
 
 
