@@ -91,7 +91,7 @@
 .dashboard .box-inner-container {
   width: 100%;
   min-height: 300px;
-  border: solid #CCC 1px;
+  /*border: solid #CCC 1px;*/
 }
 .score-box p {
   font-size: 150%;

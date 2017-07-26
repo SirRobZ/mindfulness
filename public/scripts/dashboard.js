@@ -85,7 +85,8 @@ $(function() {
   function renderReflection(reflection){
     return `<h3>${utils.formatDate(reflection.completedAt)}</h3>
     <div>
-      <p>${reflection.text}    mindfulnessScore: ${reflection.mindfulnessScore}</p>
+      <p>${reflection.text}</p>
+      <p>Mindful habits: ${reflection.habits}</p>
     </div>`;
   }
 

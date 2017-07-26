@@ -2,13 +2,23 @@
   var utils = mf.utils;
   var reflections = mf.utils.api.reflections;
 
-  function getLables() {
-    reflections.readAll().then(function(list) {
-      var lables = []
+  function getLabels() {
+    return reflections.readAll().then(function(list) {
+      var labels = [];
       for (i = 0; i < list.length; i++) {
-        lables.push(utils.formatDate(list[i].completedAt));
+        labels.push(moment(list[i].completedAt).format("MMM D YY"));
       }
-      return lables;
+      return labels;
+    }).catch(function() {});
+  }
+
+  function getData() {
+    return reflections.readAll().then(function(list) {
+      var data = [];
+      for (i = 0; i < list.length; i++) {
+        data.push(list[i].mindfulnessScore);
+      }
+      return data;
     }).catch(function() {});
   }
 
@@ -18,15 +28,13 @@
       config: {
         type: 'line',
         data: {
-          labels: getLables(),
+          labels: [],
           datasets: [
             {
-              label: "Mindfullness Scores",
+              label: "Mindfulness Scores",
               backgroundColor: 'red',
               borderColor: 'red',
-              data: [
-                1, 2, 3, 4
-              ],
+              data: [],
               fill: false
             }
           ]
@@ -35,7 +43,7 @@
           responsive: true,
           title: {
             display: true,
-            text: 'Mindfullness Scores'
+            text: 'Mindfulness Scores'
           },
           tooltips: {
             mode: 'index',
@@ -51,7 +59,7 @@
                 display: true,
                 scaleLabel: {
                   display: true,
-                  labelString: 'Month'
+                  labelString: 'Date'
                 }
               }
             ],
@@ -60,7 +68,7 @@
                 display: true,
                 scaleLabel: {
                   display: true,
-                  labelString: 'Value'
+                  labelString: 'Score'
                 }
               }
             ]
@@ -72,11 +80,43 @@
   };
 
   function MFChart(name, userOptions) {
-    var options = chartsOptions[name];
-    var selector = _.get(userOptions, 'canvasSelector', options.canvasSelector);
+    this.options = chartsOptions[name];
+    var selector = _.get(userOptions, 'canvasSelector', this.options.canvasSelector);
     this.context = $(selector).get(0).getContext('2d');
-    this.chart = new Chart(this.context, options.config);
+
+    this.loadChart();
   }
+
+  MFChart.prototype.loadChart = function() {
+    var that = this;
+    getData()
+      .then(function(data) {
+        that.setData(data);
+        return getLabels();
+      })
+      .then(function(labels){
+        that.setLabels(labels);
+        that.createChart();
+      });
+  };
+
+  MFChart.prototype.createChart = function () {
+    if(_.isObject(this.options)){
+      this.chart = new Chart(this.context, this.options.config);
+    }
+  };
+
+  MFChart.prototype.setData = function(data) {
+    if (_.isObject(this.options)) {
+      _.set(this.options, 'config.data.datasets[0].data', data);
+    }
+  };
+
+  MFChart.prototype.setLabels = function(labels) {
+    if (_.isObject(this.options)) {
+      _.set(this.options, 'config.data.labels', labels);
+    }
+  };
 
   mf.module('MFChart', MFChart);
 
