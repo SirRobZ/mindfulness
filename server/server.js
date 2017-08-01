@@ -22,6 +22,11 @@ app.post('/api/reflections', authenticate, (req, res) => {
     text: req.body.text,
     habits: req.body.habits,
     mindfulnessScore: req.body.mindfulnessScore,
+    observeScore: req.body.observeScore,
+    describeScore: req.body.describeScore,
+    actingScore: req.body.actingScore,
+    nonjudgingScore: req.body.nonjudgingScore,
+    nonreactScore: req.body.nonreactScore,
     completedAt: new Date().getTime(),
     _creator: req.user._id
   });

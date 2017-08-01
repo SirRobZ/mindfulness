@@ -6,7 +6,12 @@
   var state = {
     questions: [],
     currentQuestion: 0,
-    currentScore: 0
+    currentTotalScore: 0,
+    currentObserveScore: 0,
+    currentDescribeScore: 0,
+    currentActingScore: 0,
+    currentNonjudgingScore: 0,
+    currentNonreactScore: 0
   };
   var questionsLoaded = false;
   function renderQuestion(state) {
@@ -26,13 +31,15 @@
     var index = state.currentQuestion;
     var question = state.questions[index];
     var answerListHTML = answers.map(function(answer, index) {
-      return ('<li>' +
-        '<input type="radio" name="answer" value="' + answer + '" answerNumber="' + (index + 1) + '" id="answer ' + index + '">' + '<label for="answer ' + index + '">' + answer + '</label>' + '</li>')
+      return (
+            `<li>
+            <input type="radio" name="answer" value="${answer}" answerNumber="${index + 1}" id="answer+${index}"> <label for="answer${index}"> ${answer} </label>
+          </li>`)
     })
     $('.quiz-container .question').text(question.question);
     $('.quiz-container .questionNumber').text('question ' + (state.currentQuestion + 1) + ' of 15');
     $('.quiz-container ul').html(answerListHTML);
-    $('.quiz-container .score').html(state.currentScore);
+    // $('.quiz-container .score').html(state.currentTotalScore);
   }
 
   function startButtonHandler(event) {
@@ -54,6 +61,7 @@
     }
   }
 
+
   function scoreAnswers() {
     var userChoice = $('input[type=radio]:checked').attr('answerNumber');
     if(!userChoice){
@@ -71,11 +79,52 @@
       9,
       14
     ];
-    if (reverse.includes((state.currentQuestion + 1))) {
-      userChoice = 6 - userChoice;
-      state.currentScore = state.currentScore + userChoice;
+
+    var observe = [1, 6, 11];
+    var describe = [2, 7, 12];
+    var acting = [3, 8, 13];
+    var nonjudging = [4, 9, 14];
+    var nonreact = [5, 10, 15];
+
+    if (reverse.includes(state.currentQuestion + 1)) {
+      if (observe.includes(state.currentQuestion + 1)) {
+        userChoice = 6 - userChoice;
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentObserveScore = state.currentObserveScore + userChoice;
+      } else if (describe.includes(state.currentQuestion + 1)) {
+        userChoice = 6 - userChoice;
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentDescribeScore = state.currentDescribeScore + userChoice;
+      } else if (acting.includes(state.currentQuestion + 1)) {
+        userChoice = 6 - userChoice;
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentActingScore = state.currentActingScore + userChoice;
+      } else if (nonjudging.includes(state.currentQuestion + 1)) {
+        userChoice = 6 - userChoice;
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentNonjudgingScore = state.currentNonjudgingScore + userChoice;
+      } else if (nonreact.includes(state.currentQuestion + 1)) {
+        userChoice = 6 - userChoice;
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentNonreactScore = state.currentNonreactScore + userChoice;
+      }
     } else {
-      state.currentScore = state.currentScore + userChoice;
+      if (observe.includes(state.currentQuestion + 1)) {
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentObserveScore = state.currentObserveScore + userChoice;
+      } else if (describe.includes(state.currentQuestion + 1)) {
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentDescribeScore = state.currentDescribeScore + userChoice;
+      } else if (acting.includes(state.currentQuestion + 1)) {
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentActingScore = state.currentActingScore + userChoice;
+      } else if (nonjudging.includes(state.currentQuestion + 1)) {
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentNonjudgingScore = state.currentNonjudgingScore + userChoice;
+      } else if (nonreact.includes(state.currentQuestion + 1)) {
+        state.currentTotalScore = state.currentTotalScore + userChoice;
+        state.currentNonreactScore = state.currentNonreactScore + userChoice;
+      }
     }
   }
 
@@ -85,26 +134,47 @@
     sendReflectionDataToAPI(form);
   }
 
+  function logoutButtonHandler(event) {
+      event.preventDefault();
+      mf.utils.auth.logout()
+      .then(function(){
+        console.log('Successful logout');
+      })
+      .catch(function(e){
+        console.log('Error when logging out');
+        console.log(e);
+      });
+  }
+
+  function homeButtonHandler(event) {
+    event.preventDefault();
+    location.assign('/dashboard.html');
+  }
+
+
+
   function sendReflectionDataToAPI(form) {
     var text = form.find('*[name=text]').val();
     console.log('Text: ', text);
 
-
-    var habits = _.map(form.find('.habits input[type=checkbox]:checked'), function(habitInput){
+    var habits = _.map(form.find('.habits input[type=checkbox]:checked'), function(habitInput) {
       return habitInput.name;
     });
 
     var newReflection = {
-      mindfulnessScore: state.currentScore,
+      mindfulnessScore: state.currentTotalScore,
+      observeScore: state.currentObserveScore,
+      describeScore: state.currentDescribeScore,
+      actingScore: state.currentActingScore,
+      nonjudgingScore: state.currentNonjudgingScore,
+      nonreactScore: state.currentNonreactScore,
       text: text,
       habits: habits
     };
 
-    reflections.create(newReflection)
-    .then(function(){
+    reflections.create(newReflection).then(function() {
       location.assign('/dashboard.html');
-    })
-    .catch(function(info){
+    }).catch(function(info) {
       console.error(info);
 
     });
@@ -113,7 +183,9 @@
   var postHandlers = {
     startButtonHandler: startButtonHandler,
     nextButtonHandler: nextButtonHandler,
-    submitButtonHandler: submitButtonHandler
+    submitButtonHandler: submitButtonHandler,
+    logoutButtonHandler: logoutButtonHandler,
+    homeButtonHandler: homeButtonHandler
   };
 
   mf.postHandlers = postHandlers;

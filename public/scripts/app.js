@@ -42,7 +42,6 @@ $(function() {
     loginForm.on('submit', function(event) {
       event.preventDefault();
       var data = mf.utils.getFormData(loginForm);
-      console.log(data);
       mf.utils.api.postLoginData(data)
         .then(handleLoginSuccess)
         .catch(handleLoginError);
@@ -61,6 +60,18 @@ $(function() {
         $('#signup-form .signup-messages .alert-danger').removeClass('hidden').text('Passwords must be identical')
       }
     });
+
+    var demoLoginForm = $('#demo-form');
+    demoLoginForm.on('submit', function(event) {
+      event.preventDefault();
+      var data = {
+        email: 'demo@demo.com',
+        password: '123456'
+      };
+      mf.utils.api.postLoginData(data)
+        .then(handleLoginSuccess)
+        .catch(handleLoginError);
+    })
   }
 
 

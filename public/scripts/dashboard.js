@@ -83,10 +83,11 @@ $(function() {
   }
 
   function renderReflection(reflection){
-    return `<h3>${utils.formatDate(reflection.completedAt)}</h3>
-    <div>
+    return `<h3>${moment(reflection.completedAt).format("MMM D YYYY")}</h3>
+    <div class="reflectionDetail">
       <p>${reflection.text}</p>
       <p>Mindful habits: ${reflection.habits}</p>
+      <p>Mindfulness Score: ${reflection.mindfulnessScore}</p>
     </div>`;
   }
 
@@ -104,6 +105,8 @@ $(function() {
     getMindfulnessScore();
 
     new MFChart('score');
+    new MFChart('habits');
+    new MFChart('fivefacet');
   }
 
 });

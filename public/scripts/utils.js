@@ -110,7 +110,8 @@
 
     },
     remove: function(){
-
+      return serveData('/api/reflections/:id', 'DELETE')
+        .then
     }
   };
 
