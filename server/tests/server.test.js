@@ -120,7 +120,7 @@ describe('DELETE /api/reflections/:id', () => {
       .set('x-auth', users[1].tokens[0].token)
       .expect(200)
       .expect((res) => {
-        expect(res.body.reflection._id).toBe(hexId);
+        expect(res.body.success).toBe(true);
       })
       .end((err, res) => {
         if (err) {
