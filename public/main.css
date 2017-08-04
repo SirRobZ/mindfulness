@@ -47,27 +47,30 @@
 }
 
 .quiz-container {
-	border: 4px solid black;
 	background-color: white;
 	padding: 30px;
+}
+
+.quiz .questions {
+  margin: 0 auto;
+  display: inline-block;
 }
 
 .quiz-container ul{
 	padding: 0;
 	list-style: none;
+  text-align: left;
 }
 
 .quiz-container label{
 	display: inline-block;
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
 .quiz .start, .quiz .finish {
 	/*width: 500px;*/
   margin: 0 auto;
   text-align: center;
-  border: 2px solid black;
-  border-radius: 5px;
   padding: 30px;
   background-color: white;
 }
@@ -79,6 +82,15 @@
 
 .quiz .questionNumber {
 	text-align: right;
+}
+
+.quiz .habits {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.quiz .habit {
+  text-align: left;
 }
 
 .score-tracker {
@@ -132,7 +144,35 @@
   text-align: left;
 }
 
+.dashboard .reflection-text {
+  margin-bottom: 50px;
+}
+
+.dashboard .reflection-habits, .reflection-score{
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 2px;
+  margin: 2px;
+  display: inline-block;
+}
+
+.dashboard .reflection-score{
+  background-color: lightcoral;
+}
+
+
+.dashboard .delete-reflection {
+  margin: 2px;
+}
+
+
 
 footer {
-  margin-top: 100px;
+  margin-top: 150px;
+  text-align: center;
+}
+
+footer a {
+  font-size: 140%;
+  color: black;
 }

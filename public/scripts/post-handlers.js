@@ -157,7 +157,7 @@
     var text = form.find('*[name=text]').val();
     console.log('Text: ', text);
 
-    var habits = _.map(form.find('.habits input[type=checkbox]:checked'), function(habitInput) {
+    var habits = _.map(form.find('.habit input[type=checkbox]:checked'), function(habitInput) {
       return habitInput.name;
     });
 

@@ -54,6 +54,40 @@ $(function() {
         event.preventDefault();
         location.assign('/newpost.html');
       })
+
+    $(document).on('click', '.delete-button', deleteHandler)
+
+    $('.my-reflections').submit(function() {
+      event.preventDefault();
+      $('html,body').animate({
+        scrollTop: $(".reflections-list").offset().top},
+        'slow');
+});
+  }
+
+  function deleteHandler(event) {
+    event.preventDefault();
+
+    if(confirm('Are you sure?')){
+      deleteReflection($(this));
+    }
+
+  }
+
+  function deleteReflection(button){
+    var reflectionElement = button.parent();
+    var reflectionId = reflectionElement.attr('reflectionId');
+    reflections.removeById(reflectionId)
+      .then(function(){
+        $('.reflections-list').accordion('destroy');
+        loadUserReflections();
+      })
+      .catch(function(){
+        reflectionElement
+          .find('p.error-message')
+          .removeClass('hidden')
+          .text('Reflection has not been deleted successfully!');
+      });
   }
 
   function loadUserReflections(){
@@ -83,11 +117,18 @@ $(function() {
   }
 
   function renderReflection(reflection){
-    return `<h3>${moment(reflection.completedAt).format("MMM D YYYY")}</h3>
-    <div class="reflectionDetail">
-      <p>${reflection.text}</p>
-      <p>Mindful habits: ${reflection.habits}</p>
-      <p>Mindfulness Score: ${reflection.mindfulnessScore}</p>
+    return`<h3>
+      <div class="reflection-date">${moment(reflection.completedAt).format("MMM D YYYY")} </div>
+
+    </h3>
+    <div reflectionId="${reflection._id}" class="reflectionDetail">
+      <p class="reflection-text">${reflection.text}</p>
+      <p class="reflection-habits"> Mindful habits: ${reflection.habits} </p>
+      <br>
+      <p class="reflection-score"> Mindfulness Score: ${reflection.mindfulnessScore} </p>
+      <br>
+      <button class="delete-button btn btn-success">Delete</button>
+      <p class="error-message hidden">Error</p>
     </div>`;
   }
 

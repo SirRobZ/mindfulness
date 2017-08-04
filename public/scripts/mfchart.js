@@ -200,7 +200,10 @@
             }
           },
           legend: {
-            display: false
+            display: false,
+            labels: {
+              defaultFontSize: 18
+            }
           },
           title: {
             display: true,

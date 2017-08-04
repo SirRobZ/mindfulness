@@ -7,30 +7,37 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="main.css">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
   <script src="scripts/auth-check.js"></script>
 </head>
 
 <body>
-  <main class="dashboard">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Mindful</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="logout-form navbar-form navbar-right">
-            <button type="submit" class="btn btn-success signout-button">Sign Out</button>
-          </form>
-        </div>
-        <!--/.navbar-collapse -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Mindful</a>
       </div>
-    </nav>
+      <div id="navbar" class="navbar-collapse collapse">
+        <form class="logout-form navbar-form navbar-right">
+          <button type="submit" class="btn btn-success signout-button">Sign Out</button>
+        </form>
+        <form class="my-reflections navbar-form navbar-right">
+          <button type="submit" class="btn btn-success my-reflections-button">My Reflections</button>
+        </form>
+      </div>
+      <!--/.navbar-collapse -->
+    </div>
+  </nav>
+
+  <main class="dashboard">
+
 
     <div class="row text-center">
       <div class="score-tracker">
@@ -68,7 +75,7 @@
               <div class="box-inner-container">
                 <div class="new-reflection">
                   <form class="new-reflection">
-                    <button type="submit" class="btn btn-success new-reflection-button">Create New Reflection</button>
+                    <button type="submit" class="btn btn-primary btn-lg new-reflection-button">Create New Reflection</button>
                   </form>
                 </div>
                 <div class="reflections-list"></div>
@@ -78,14 +85,13 @@
         </div>
       </div>
     </div>
-
-
-    <footer>
-      <p>&copy; 2016 Company, Inc.</p>
-    </footer>
-
     <!-- /container -->
   </main>
+  <footer>
+    <hr>
+    <a href="https://github.com/SirRobZ/mindfulness"><img src="/images/GitHub-Mark-32px.png" alt="GitHub logo">  GitHub - SirRobZ</a>
+  </footer>
+
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>

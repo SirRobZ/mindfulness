@@ -84,7 +84,7 @@ app.delete('/api/reflections/:id', authenticate, (req, res) => {
       return res.status(404).send();
     }
 
-    res.send({reflection});
+    res.send({success: true});
   }).catch((e) => {
     res.status(400).send();
   });
