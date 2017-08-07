@@ -1,4 +1,4 @@
-<h1>Mindfulness<h1>
+<h1>Mindfulness</h1>
 <p><a href="https://still-thicket-16302.herokuapp.com/">Mindfulness</a> is a full-stafk web app that allows users to track their mindfulness and the habits which promote mindfulness.</p>
 <img src="public/images/screenshots.png">
 
