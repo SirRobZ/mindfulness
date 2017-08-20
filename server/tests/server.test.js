@@ -176,7 +176,6 @@ describe('PATCH /api/reflections/:id', () => {
     var hexId = reflections[0]._id.toHexString()
     var body = {
       text: 'updated text',
-      mindfulnessScore: 30
     }
     request(app)
       .patch(`/api/reflections/${hexId}`)
@@ -185,7 +184,6 @@ describe('PATCH /api/reflections/:id', () => {
       .expect(200)
       .expect((res) => {
         expect(res.body.reflection.text).toBe(body.text);
-        expect(res.body.reflection.mindfulnessScore).toBe(30);
       })
       .end(done);
   });

@@ -43,28 +43,27 @@
       <div class="score-tracker">
 
         <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-md-3 box-container">
-              <div class="box-inner-container score-box">
-                <p>Mindfulness Score</p>
-                <div class="score-container">
-                  <div class="score"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-md-9 box-container">
-              <div class="box-inner-container">
-                <canvas id="score-chart-canvas"></canvas>
+          <div class="row overall-score">
+            <div class="box-inner-container score-box">
+              <h2>Overall Mindfulness Score</h2>
+              <div class="score-container">
+                <div class="score"></div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xs-12 col-md-6 box-container">
+          <div class="row score-graph">
+            <div class="box-inner-container">
+              <canvas id="score-chart-canvas"></canvas>
+            </div>
+          </div>
+
+          <div class="row habit-five-facet">
+            <div class="col-xs-12 col-md-5 box-container">
               <div class="box-inner-container">
                 <canvas id="habit-chart-canvas"></canvas>
               </div>
             </div>
-            <div class="col-xs-12 col-md-6 box-container">
+            <div class="col-xs-12 col-md-5 box-container">
               <div class="box-inner-container">
                 <canvas id="fivefacet-chart-canvas"></canvas>
               </div>

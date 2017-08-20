@@ -98,7 +98,8 @@
           },
           title: {
             display: true,
-            text: 'Mindfulness over time'
+            text: 'Mindfulness over time',
+            fontSize: 20
           },
           tooltips: {
             mode: 'index',
@@ -150,11 +151,15 @@
         options: {
           responsive: true,
           legend: {
-            position: 'top'
+            position: 'top',
+            labels: {
+              fontSize: 16
+            }
           },
           title: {
             display: true,
-            text: 'Mindful Habits'
+            text: 'Mindful Habits',
+            fontSize: 20
           },
           animation: {
             animateScale: true,
@@ -171,7 +176,7 @@
           labels: [
             ["Staying Present"],
             [
-              "Describing", "thoughts & feelings"
+              "Describing", "thoughts", "& feelings"
             ],
             [
               "Acting with", "awareness"
@@ -196,7 +201,10 @@
           scale: {
             ticks: {
               min: 0,
-              max: 15
+              max: 16,
+            },
+            pointLabels: {
+              fontSize: 14
             }
           },
           legend: {
@@ -207,7 +215,8 @@
           },
           title: {
             display: true,
-            text: 'Five Facet Mindfulness'
+            text: 'Five Facet Mindfulness',
+            fontSize: 20
           }
         }
       }

@@ -92,8 +92,16 @@
         throw Error('Invalid Data');
       });
     },
-    readOne: function() {},
-    update: function() {},
+    readOne: function(reflectionId) {
+      return serveData('/api/reflections' + reflectionId, 'GET').then(function(result) {
+        return result
+      });
+    },
+    update: function(reflection) {
+      return serveData('/api/reflections/' + reflection._id, 'PATCH', reflection).then(function(result) {
+        return result.response;
+      });
+    },
     remove: function(reflection) {
       return reflections.removeById(reflection._id);
     },

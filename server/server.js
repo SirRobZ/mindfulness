@@ -92,7 +92,7 @@ app.delete('/api/reflections/:id', authenticate, (req, res) => {
 
 app.patch('/api/reflections/:id', authenticate, (req, res) => {
   var id = req.params.id;
-  var body = _.pick(req.body, ['text', 'habits', 'mindfulnessScore']);
+  var body = _.pick(req.body, ['text', 'habits']);
 
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();

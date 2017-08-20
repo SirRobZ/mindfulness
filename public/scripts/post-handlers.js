@@ -61,6 +61,16 @@
     }
   }
 
+  function backButtonHandler(event) {
+    event.preventDefault()
+    if (state.currentQuestion > 0) {
+      state.currentQuestion--;
+      renderQuestion(state);
+    } else {
+      alert('This is the first question.');
+    }
+  }
+
 
   function scoreAnswers() {
     var userChoice = $('input[type=radio]:checked').attr('answerNumber');
@@ -155,8 +165,6 @@
 
   function sendReflectionDataToAPI(form) {
     var text = form.find('*[name=text]').val();
-    console.log('Text: ', text);
-
     var habits = _.map(form.find('.habit input[type=checkbox]:checked'), function(habitInput) {
       return habitInput.name;
     });
@@ -181,8 +189,10 @@
   }
 
   var postHandlers = {
+    renderQuestion: renderQuestion,
     startButtonHandler: startButtonHandler,
     nextButtonHandler: nextButtonHandler,
+    backButtonHandler: backButtonHandler,
     submitButtonHandler: submitButtonHandler,
     logoutButtonHandler: logoutButtonHandler,
     homeButtonHandler: homeButtonHandler
