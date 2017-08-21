@@ -1,6 +1,7 @@
 .jumbotron {
   background: url('/images/balance-110850_1280.jpg') no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  background-position: center center;
   height: 600px;
 }
 
@@ -46,11 +47,10 @@
   justify-content: center;
   margin-top: 25px;
   color: black;
-  background-image: url('/images/noun_17148_ffb980.png');
+  /*background-image: url('/images/noun_17148_ffb980.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: bottom;
-  border-radius: 10px;
+  background-position: bottom;*/
 }
 
 .landing-page .facet {
@@ -218,19 +218,7 @@
   margin-bottom: 0;
 }
 
-@media only screen and (max-width: 640px) {
-  .dashboard .details-options {
-    display: block;
-  }
 
-  .dashboard .habit-five-facet {
-    display: block;
-  }
-
-  .landing-page .five-facets {
-    display: block;
-  }
-}
 
 .dashboard .reflection-habits, .reflection-score {
   background-color: dodgerblue;
@@ -255,7 +243,24 @@
     border-bottom: 1px dotted black;
 }
 
+@media only screen and (max-width: 640px) {
+  .dashboard .details-options {
+    display: block;
+  }
 
+  .dashboard .habit-five-facet {
+    display: block;
+  }
+
+  .landing-page .five-facets {
+    display: block;
+  }
+
+  .jumbotron {
+    height: 400px;
+  }
+
+}
 
 footer {
   margin-top: 150px;
