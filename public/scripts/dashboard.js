@@ -82,7 +82,7 @@
     }
 
     function deleteReflection(button) {
-      var reflectionElement = button.parent();
+      var reflectionElement = button.closest('div[reflectionId]')
       var reflectionId = reflectionElement.attr('reflectionId');
       reflections.removeById(reflectionId).then(function() {
         $('.reflections-list').accordion('destroy');
