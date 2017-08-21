@@ -86,7 +86,7 @@
       var reflectionId = reflectionElement.attr('reflectionId');
       reflections.removeById(reflectionId).then(function() {
         $('.reflections-list').accordion('destroy');
-        loadUserReflections();
+        location.reload();
       }).catch(function() {
         reflectionElement.find('p.error-message').removeClass('hidden').text('Reflection has not been deleted successfully!');
       });
